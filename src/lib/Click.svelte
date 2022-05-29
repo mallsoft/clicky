@@ -1,6 +1,4 @@
 <script>
-	import { onMount } from 'svelte';
-
 	import { clicks } from './stats';
 
 	let repeat = false;
