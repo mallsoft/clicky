@@ -4,11 +4,8 @@
 	let repeat = false;
 </script>
 
-<input
-	type="button"
-	name="clicker"
+<button
 	id="click"
-	value={$clicks > 0n ? 'more' : 'click'}
 	on:keydown={(ev) => {
 		repeat = ev.repeat;
 	}}
@@ -21,10 +18,12 @@
 		}
 		$clicks += 1n;
 	}}
-/>
+	>Click
+</button>
 
 <style lang="scss">
 	#click {
+		position: relative;
 		margin: 1em;
 
 		border: none;
@@ -36,17 +35,43 @@
 		width: 12%;
 		border-radius: 100%;
 
-		border: 1px solid var(---bg);
+		border: 3px solid var(---bg);
 
-		box-shadow: 0 0 10px 2px var(---shadow);
+		box-shadow: 0 5px 1px 1px var(---shadow), 0 10px 1px 1px var(---shadow);
+		transform: perspective(200px) rotateX(20deg);
 
-		transition: filter 0.2s, box-shadow 0.2s;
+		transition-property: filter, box-shadow, transform;
+		transition-duration: 0.2s, 0.2s, 0.2s;
+
+		&::after {
+			position: absolute;
+			content: '';
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			margin: auto;
+			width: 90%;
+			height: 90%;
+			border-radius: 100%;
+			z-index: -1;
+			background: linear-gradient(-0.1turn, rgba(255, 255, 255, 0), 80%, white);
+			transition: opacity 0.2s;
+		}
 
 		&:hover {
-			filter: brightness(1.1);
+			filter: brightness(1.05);
+			&::after {
+				opacity: 0.1;
+			}
 		}
 		&:active {
-			box-shadow: 0 0 5px 2px var(---shadow);
+			box-shadow: 0 0 1px 3px var(---shadow), 0 10px 1px 1px var(---shadow);
+			filter: brightness(1.1);
+			transform: perspective(300px) rotateX(25deg) translateY(5px) translateZ(-20px);
+
+			transition-property: filter, box-shadow, transform;
+			transition-duration: 0.06s, 0.06s, 0.06s;
 		}
 	}
 </style>
