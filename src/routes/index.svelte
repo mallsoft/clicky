@@ -1,21 +1,48 @@
 <script>
 	import Click from '$lib/Click.svelte';
-	import { clicks } from '$lib/stats';
+	import Score from '$lib/Score.svelte';
+	import { onMount } from 'svelte';
 
-	$: value = $clicks.toLocaleString('en-US');
+	const titles = [
+		'fun had',
+		'self worth',
+		'hours procrastinated',
+		'happiness rating',
+		'memes shared',
+		'days untill we all die',
+		'bugs squashed',
+		'furries currently doing it',
+		'rolls of toilet paper used',
+		'reminders sent',
+		'gotta keep it real',
+		'screw you guys im just a bot',
+		'i love you',
+		'alarms ignored',
+		'public farts'
+	];
+	let title = titles[Math.floor(Math.random() * titles.length)];
+
+	onMount(() => {
+		const interv = setInterval(() => {
+			title = titles[Math.floor(Math.random() * titles.length)];
+		}, 5000 + Math.floor(Math.random() * 15000));
+
+		return () => {
+			clearInterval(interv);
+		};
+	});
 </script>
 
 <article>
-	<h1>fun had:</h1>
-	<p style:--vlen={value.length}>
-		{value}
-	</p>
+	<h1>{title}</h1>
+	<Score />
 	<Click />
 </article>
 
 <style>
 	article {
 		flex: 1;
+
 		width: 100%;
 
 		display: flex;
@@ -30,10 +57,5 @@
 	h1 {
 		font-size: 0.8em;
 		margin: 0;
-	}
-	p {
-		font-size: min(calc((100vw * 1.6) / var(--vlen)), 5em);
-		text-align: center;
-		text-shadow: 3px 3px 1px var(---shadow), 6px 6px 1px var(---shadow), 9px 9px 3px var(---shadow);
 	}
 </style>

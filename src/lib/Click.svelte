@@ -1,5 +1,5 @@
 <script>
-	import { clicks } from './stats';
+	import { clicks } from './stores';
 
 	let repeat = false;
 </script>
@@ -17,9 +17,8 @@
 			return;
 		}
 		$clicks += 1n;
-	}}
-	>Click
-</button>
+	}}>Click</button
+>
 
 <style lang="scss">
 	#click {
@@ -28,17 +27,18 @@
 
 		border: none;
 		color: var(---bg);
-		background: var(---fg);
+		background: var(---fga);
 		font-size: 1.5em;
 
 		aspect-ratio: 1;
 		width: 12%;
+		min-width: min-content;
 		border-radius: 100%;
 
 		border: 3px solid var(---bg);
 
 		box-shadow: 0 5px 1px 1px var(---shadow), 0 10px 1px 1px var(---shadow);
-		transform: perspective(200px) rotateX(20deg);
+		transform: perspective(200px) rotateX(10deg);
 
 		transition-property: filter, box-shadow, transform;
 		transition-duration: 0.2s, 0.2s, 0.2s;
@@ -62,13 +62,13 @@
 		&:hover {
 			filter: brightness(1.05);
 			&::after {
-				opacity: 0.1;
+				opacity: 0.5;
 			}
 		}
 		&:active {
 			box-shadow: 0 0 1px 3px var(---shadow), 0 10px 1px 1px var(---shadow);
 			filter: brightness(1.1);
-			transform: perspective(300px) rotateX(25deg) translateY(5px) translateZ(-20px);
+			transform: perspective(300px) rotateX(15deg) translateY(5px) translateZ(-20px);
 
 			transition-property: filter, box-shadow, transform;
 			transition-duration: 0.06s, 0.06s, 0.06s;

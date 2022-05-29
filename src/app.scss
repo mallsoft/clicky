@@ -1,9 +1,15 @@
 @import '@fontsource/syne-mono';
 
 :root {
-	---fg: #ffeb9c;
-	---bg: #514c3e;
-	---shadow: #413c2d;
+	---fg: #fff7fa;
+	---fga: #ff6794;
+	---fgb: #3eff75;
+	---bg: #1f144d;
+	---shadow: hsla(0, 0%, 0%, 0.1);
+
+	---cursor-default: url('/curs/glove1.png') 8 8, auto;
+	---cursor-pointer: url('/curs/glove3.png') 8 8, pointer;
+	---cursor-active: url('/curs/glove2.png') 8 8, auto;
 }
 
 * {
@@ -11,13 +17,19 @@
 }
 
 body {
-	margin: 0;
-	min-height: 100vh;
 	color: var(---fg);
 	background-color: var(---bg);
 
 	font-family: 'Syne Mono', monospace, sans-serif;
-	font-size: clamp(1.5rem, 2vw, 4rem);
+	font-size: clamp(1.2rem, 1.4vw, 2rem);
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin: 0 auto;
+	min-height: 100vh;
+
+	cursor: var(---cursor-default);
 }
 
 a {
@@ -33,17 +45,22 @@ input,
 button {
 	font-size: inherit;
 	font-family: inherit;
-}
-
-button,
-input[type='submit'],
-input[type='reset'],
-input[type='button'] {
-	cursor: pointer;
+	cursor: var(---cursor-pointer);
+	&:active {
+		cursor: var(---cursor-active);
+	}
 }
 
 h1,
 h2,
 p {
 	margin: 0;
+}
+
+ul,
+ol,
+li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
