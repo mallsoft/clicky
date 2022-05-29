@@ -1,12 +1,14 @@
 <script>
 	import Click from '$lib/Click.svelte';
 	import { clicks } from '$lib/stats';
+
+	$: value = $clicks.toLocaleString('en-US');
 </script>
 
 <article>
 	<h1>fun had:</h1>
-	<p>
-		{$clicks.toLocaleString('en-US')}
+	<p style:--vlen={value.length}>
+		{value}
 	</p>
 	<Click />
 </article>
@@ -22,8 +24,7 @@
 		justify-content: center;
 	}
 
-	h1,
-	p {
+	h1 {
 		user-select: none;
 	}
 	h1 {
@@ -31,7 +32,7 @@
 		margin: 0;
 	}
 	p {
-		font-size: 3em;
+		font-size: min(calc((100vw * 1.6) / var(--vlen)), 3em);
 		text-align: center;
 	}
 </style>
