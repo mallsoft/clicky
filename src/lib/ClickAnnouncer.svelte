@@ -51,15 +51,15 @@
 
 	@keyframes fadein {
 		from {
-			filter: opacity(0);
-			transform: translate(calc(var(--px) * 10), calc(var(--py) * 10)) scale(3);
+			filter: opacity(0) blur(5px);
+			transform: translate(calc(var(--px) * 10), calc(var(--py) * 10)) scale(2);
 		}
 		60% {
 			filter: opacity(1);
 		}
 		to {
-			filter: opacity(0) blur(20px);
-			transform: translate(calc(var(--px) * 4), calc(var(--py) * 4));
+			filter: opacity(0);
+			transform: translate(calc(var(--px) * 4), calc(var(--py) * 4)) rotate(10deg);
 		}
 	}
 </style>
