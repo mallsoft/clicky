@@ -24,15 +24,37 @@ function loadStore(key, d = null) {
 	return window.atob(enx(storage, key));
 }
 
-function createClickStore() {
+export const clickLog = (() => {
+	const { subscribe, set, update } = writable([]);
+	return {
+		subscribe,
+		push: (v) => {
+			update((n) => [...n, { score: v, time: Date.now() }]);
+		},
+		pop: () => {
+			update((n) => n.slice(1));
+		},
+		clearOld: () => {
+			update((n) => n.filter((v) => Date.now() - v.time < 350));
+		}
+	};
+})();
+
+export const clicks = (() => {
 	const { subscribe, set, update } = writable(BigInt(loadStore(_clicksKey, 0n)));
 	return {
 		subscribe,
 		set: (v) => {
 			set(v);
 			saveStore(v, _clicksKey);
+		},
+		add: (v) => {
+			update((n) => {
+				const res = n + v;
+				clickLog.push(v);
+				saveStore(res, _clicksKey);
+				return res;
+			});
 		}
 	};
-}
-
-export const clicks = createClickStore();
+})();

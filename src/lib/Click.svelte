@@ -16,7 +16,7 @@
 		if (repeat) {
 			return;
 		}
-		$clicks += 1n;
+		clicks.add(1n);
 	}}>Click</button
 >
 
