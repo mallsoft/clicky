@@ -31,7 +31,7 @@
 		font-size: 1.5em;
 
 		aspect-ratio: 1;
-		width: 12%;
+		width: max(12%, 120px);
 		min-width: min-content;
 		border-radius: 100%;
 
