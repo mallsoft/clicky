@@ -26,7 +26,7 @@
 	}
 
 	$: bots = createBots($ownedItems.robo);
-	$: wax = $ownedItems.wax && Array($ownedItems.wax).fill(itemShopItems.wax.icon);
+	$: wax = $ownedItems.wax ? Array($ownedItems.wax).fill(itemShopItems.wax.icon) : [];
 
 	onMount(() => {
 		return () =>
