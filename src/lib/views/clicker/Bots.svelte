@@ -22,7 +22,6 @@
 				})
 			});
 		}
-		console.log('bots', bots);
 		return bots;
 	}
 
