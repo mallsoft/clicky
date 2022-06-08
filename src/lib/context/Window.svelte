@@ -1,20 +1,20 @@
 <script>
+	import { transformIn, fadeIn } from '$lib/core/action';
 	import { createEventDispatcher } from 'svelte';
 	export let title = 'hmm';
 
 	const dispatch = createEventDispatcher();
 	function close() {
-		console.log('close');
 		dispatch('close');
 	}
 </script>
 
-<div class="w" on:click={() => close()}>
-	<div on:click|stopPropagation>
+<div class="w" on:click={() => close()} transition:fadeIn={{ duration: 100 }}>
+	<div on:click|stopPropagation transition:transformIn={{ delay: 100, duration: 200 }}>
 		<h1>{title}</h1>
 		<button on:click={() => close()}>x</button>
 	</div>
-	<section on:click|stopPropagation>
+	<section on:click|stopPropagation transition:transformIn={{ delay: 0, duration: 300 }}>
 		<slot />
 	</section>
 </div>
@@ -40,6 +40,7 @@
 		align-content: center;
 
 		& > div {
+			padding: 0.5em;
 			border-radius: 8px;
 			background-color: var(---bg);
 			color: var(---fg);
@@ -47,19 +48,27 @@
 			justify-content: space-between;
 			& > h1 {
 				font-size: 1.4em;
-				margin: 0 0.5em;
 			}
 			& > button {
 				border: none;
 				background-color: var(---fg);
 				color: var(---bg);
-				margin: 3px;
 				border-radius: 8px;
 				padding: 0.25em 0.5em;
+
+				&:hover {
+					background-color: var(---fgb);
+					color: var(---bg);
+				}
+				&:active {
+					transform: translateY(2px);
+				}
 			}
 		}
 
 		& > section {
+			max-width: 600px;
+
 			margin-bottom: auto;
 			padding: 8px;
 			color: var(---bg);
@@ -75,7 +84,7 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background-color: rgba(0, 0, 0, 0.8);
+			background-color: rgba(0, 0, 0, 0.6);
 
 			@supports (backdrop-filter: blur(3px)) {
 				background-color: rgba(0, 0, 0, 0.6);

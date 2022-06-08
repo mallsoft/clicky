@@ -1,5 +1,6 @@
 <script>
-	import { clicks } from './stores';
+	import { clicks, hitStack } from '$lib/core/stores';
+	import Loops from './Loops.svelte';
 
 	let repeat = false;
 </script>
@@ -17,13 +18,21 @@
 			return;
 		}
 		clicks.add(1n);
-	}}>Click</button
+		hitStack.announce(1);
+	}}
 >
+	<span>Click</span>
+
+	<Loops />
+</button>
 
 <style lang="scss">
 	#click {
 		position: relative;
-		margin: 1em;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
 
 		border: none;
 		color: var(---bg);
@@ -31,7 +40,7 @@
 		font-size: 1.5em;
 
 		aspect-ratio: 1;
-		width: max(12%, 120px);
+		width: clamp(140px, 20%, 180px);
 		min-width: min-content;
 		border-radius: 100%;
 
@@ -72,6 +81,9 @@
 
 			transition-property: filter, box-shadow, transform;
 			transition-duration: 0.06s, 0.06s, 0.06s;
+		}
+		span {
+			transform: translateY(15%);
 		}
 	}
 </style>

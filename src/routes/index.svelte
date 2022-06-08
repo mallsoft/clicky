@@ -1,25 +1,11 @@
 <script>
-	import ClickAnnouncer from '$lib/ClickAnnouncer.svelte';
-
-	import Click from '$lib/Click.svelte';
-	import Score from '$lib/Score.svelte';
+	import Menubar from '$lib/views/Menubar.svelte';
+	import HitAnnouncer from '$lib/views/HitAnnouncer.svelte';
+	import Score from '$lib/views/Score.svelte';
+	import Click from '$lib/views/clicker/Click.svelte';
 </script>
 
-<section>
-	<ClickAnnouncer />
-	<Score />
-	<Click />
-</section>
-
-<style>
-	section {
-		flex: 1;
-
-		width: 100%;
-
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-</style>
+<Menubar />
+<Score />
+<HitAnnouncer />
+<Click />

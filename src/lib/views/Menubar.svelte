@@ -1,20 +1,21 @@
 <script>
-	import { clicks } from '$lib/stores';
-	import Store from './shop/Store.svelte';
+	import { clicks } from '$lib/core/stores';
+	import Shop from '$lib/context/Shop.svelte';
 
-	let storeOpen = false;
+	let shopOpen = false;
 </script>
 
-<aside>
-	{#if $clicks > 100n}
-		<button class:open={storeOpen} on:click={() => (storeOpen = true)}>Store</button>
-	{/if}
+<section>
+	<button class:open={shopOpen} on:click={() => (shopOpen = true)}>Store</button>
 
-	<Store bind:open={storeOpen} />
-</aside>
+	<Shop bind:open={shopOpen} />
+</section>
 
 <style lang="scss">
-	aside {
+	section {
+		position: absolute;
+		top: 0;
+		left: 0;
 		padding: 8px;
 		font-size: 0.8em;
 	}
@@ -27,7 +28,7 @@
 		color: var(---fgb);
 		background-color: var(---bg);
 
-		transition: background-color 0.2s, color 0.2s, transform 0.1s;
+		transition: background-color 0.2s, color 0.2s, transform 0.1s, opacity 0.2s;
 		&:hover,
 		&.open {
 			background-color: var(---fgb);

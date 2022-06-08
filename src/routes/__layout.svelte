@@ -1,9 +1,7 @@
 <script>
 	import '../app.scss';
-	import Menubar from '$lib/Menubar.svelte';
 </script>
 
-<!-- <Menubar /> -->
 <main>
 	<slot />
 </main>
@@ -21,7 +19,6 @@
 		@keyframes fadeIn {
 			from {
 				opacity: 0;
-				transform: translateY(-10px);
 			}
 			to {
 				opacity: 1;

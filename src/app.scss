@@ -5,6 +5,7 @@
 	---fga: #ff6794;
 	---fgb: #3eff75;
 	---bg: #1f144d;
+	---bg2: #6826b4;
 	---shadow: hsla(0, 0%, 0%, 0.1);
 
 	---cursor-default: url('/curs/glove1.png') 8 8, auto;
@@ -19,6 +20,7 @@
 body {
 	color: var(---fg);
 	background-color: var(---bg);
+	background: linear-gradient(140deg, var(---bg), var(---bg2));
 
 	font-family: 'Syne Mono', monospace, sans-serif;
 	font-size: clamp(1.2rem, 1.4vw, 2rem);
@@ -51,8 +53,19 @@ button {
 	}
 }
 
+[role='button'] {
+	cursor: var(---cursor-pointer);
+	&:active {
+		cursor: var(---cursor-active);
+	}
+}
+
 h1,
 h2,
+h3,
+h4,
+h5,
+h6,
 p {
 	margin: 0;
 }
